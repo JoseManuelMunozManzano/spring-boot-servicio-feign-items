@@ -2,6 +2,7 @@ package com.jmunoz.springboot.app.item;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 // Se va a ver la librería Feign, otra forma de implementar un cliente http para la comunicación entre microservicios.
@@ -14,6 +15,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 // Con la anotación @EnableFeignClients, se habilitan nuestros clientes Feign que tengamos implementado en el
 // proyecto, y además nos permite inyectar estos clientes en nuestros controladores u otros componentes de Spring,
 // es decir, habilita la inyección de dependencias, el @Autowired
+//
+// Configuración de Ribbon Client para que funcione la parte del properties
+// En la anotación @RibbonClient se indica el mismo nombre que tenemos en ProductoClienteRest
+@RibbonClient(name="servicio-productos")
 @EnableFeignClients
 @SpringBootApplication
 public class SpringbootServicioItemApplication {
